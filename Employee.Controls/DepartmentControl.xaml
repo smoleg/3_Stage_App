@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Employee.Controls.DepartmentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Employee.Controls"
+             mc:Ignorable="d" d:DesignWidth="524.375" Height="85.313">
+    <Grid>
+        <Label x:Name="lbName" Content="Название департамента" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbName" Height="23" Margin="196,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>
