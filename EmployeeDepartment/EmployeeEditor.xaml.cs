@@ -26,7 +26,7 @@ namespace EmployeeDepartment
         public EmployeeEditor()
         {
             InitializeComponent();
-            editorControl.SetEmployee(Employee);
+            //editorControl.SetEmployee(Employee);
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace EmployeeDepartment
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            editorControl.UpdateEmployee();
+            //editorControl.UpdateEmployee();
             DialogResult = true;
         }
     }

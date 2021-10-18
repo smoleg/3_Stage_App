@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,11 @@ namespace EmployeeDepartment
         private static int CHAR_BOUND_H = 90; 
 
         private Random random = new Random();
-        public List<Person> EmployeeList { get; set; }
+        public ObservableCollection<Person> EmployeeList { get; set; }
 
         public EmployeeDatabase()
         {
-            EmployeeList = new List<Person>();
+            EmployeeList = new ObservableCollection<Person>();
             GenerateEmployees(20);
         }
 

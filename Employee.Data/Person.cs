@@ -1,22 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Employee.Data
 {
-    public class Person
+    public class Person : INotifyPropertyChanged
+
     {
-        public string FirstName { get; set; }
+        private string _firstname;
+        private string _lastName;
+        private string _secondName;
+        private int _salary;
+        private Department _department = Department.None;
 
-        public string SecondName { get; set; }
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
-        public string LastName { get; set; }
+        public string FirstName
+        {
+            get { return _firstname; }
+            set
+            {
+                _firstname = value;
+                NotifyPropertyChanged();
+            }
+        }
 
-        public Department Department { get; set; } = Department.None;
+        public string SecondName
+        {
+            get { return _secondName; }
+            set
+            {
+                _secondName = value;
+                NotifyPropertyChanged();
+            }
+        }
 
-        public int Salary { get; set; }
+        public string LastName
+        {
+            get { return _lastName; }
+            set
+            {
+                _lastName = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public Department Department
+        {
+            get { return _department; }
+            set
+            {
+                _department = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public int Salary
+        {
+            get { return _salary; }
+            set
+            {
+                _salary = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public Person() { }
 
@@ -28,5 +83,7 @@ namespace Employee.Data
             Department = dep;
             Salary = Inc;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -27,35 +27,31 @@ namespace EmployeeDepartment
         public MainWindow()
         {
             InitializeComponent();
-            departmentlistView.ItemsSource = departmentDatabase.DepartmentList;
-            UpdateBinding();
+            DataContext = this;
+            departmentlistView.ItemsSource = departmentDatabase.DepartmentList;            
         }
 
         private void employeelistView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count != 0)
-                employeeControl.SetEmployee((Person)e.AddedItems[0]);            
+                employeeControl.Employee = ((Person)e.AddedItems[0]);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (employeelistView.SelectedItems.Count < 1)
                 return;
-            employeeControl.UpdateEmployee();
+            //employeeControl.UpdateEmployee();
             btnSave.IsEnabled = false;
-            UpdateBinding();
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
             if (employeelistView.SelectedItems.Count < 1)
                 return;
-            if(MessageBox.Show("Вы действительно желаете удалить запись сотрудника?", "Удаление записи", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
+            if (MessageBox.Show("Вы действительно желаете удалить запись сотрудника?", "Удаление записи", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 employeeDatabase.EmployeeList.Remove((Person)employeelistView.SelectedItems[0]);
-                UpdateBinding();
-                employeeControl.SetToDefault();
-            }
+
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
