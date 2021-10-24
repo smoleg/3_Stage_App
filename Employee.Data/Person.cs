@@ -10,6 +10,7 @@ namespace Employee.Data
 {
     public class Person : INotifyPropertyChanged, ICloneable
     {
+        private int _ID;
         public event PropertyChangedEventHandler PropertyChanged;
         private string _firstname;
         private string _lastName;
@@ -34,6 +35,16 @@ namespace Employee.Data
             set
             {
                 _firstname = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public int ID
+        {
+            get { return _ID; }
+            set
+            {
+                _ID = value;
                 NotifyPropertyChanged();
             }
         }

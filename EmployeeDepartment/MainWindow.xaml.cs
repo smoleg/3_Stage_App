@@ -28,7 +28,6 @@ namespace EmployeeDepartment
         public ObservableCollection<Department> DepList { get; set; }
         public Person SelectedEmp { get; set; }
 
-
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +46,12 @@ namespace EmployeeDepartment
         {
             if (employeeListView.SelectedItems.Count < 1)
                 return;
-            EmpList[EmpList.IndexOf(SelectedEmp)] = employeeControl.Employee;
+
+            if (employeeDatabase.Update(employeeControl.Employee) > 0)
+            {
+                EmpList[EmpList.IndexOf(SelectedEmp)] = employeeControl.Employee;
+                MessageBox.Show("Запись успешно обновлена", "Обновление записи", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
@@ -55,8 +59,13 @@ namespace EmployeeDepartment
             if (SelectedEmp == null)
                 return;
             if (MessageBox.Show("Вы действительно желаете удалить запись сотрудника?", "Удаление записи", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                employeeDatabase.EmployeeList.Remove(SelectedEmp);
-
+            {
+                if (employeeDatabase.Remove(SelectedEmp) > 0)
+                {
+                    employeeDatabase.EmployeeList.Remove(SelectedEmp);
+                    MessageBox.Show("Запись успешно удалена", "Удаление записи", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -64,7 +73,10 @@ namespace EmployeeDepartment
             EmployeeEditor employeeEditor = new EmployeeEditor();
             if (employeeEditor.ShowDialog() == true)
             {
-                employeeDatabase.EmployeeList.Add(employeeEditor.Employee);
+                if (employeeDatabase.AddToDatabase(employeeEditor.Employee) > 0)
+                {                    
+                    MessageBox.Show("Запись успешно добавлена", "Добавление записи", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
         }
     }

@@ -12,7 +12,7 @@
                   ItemsSource="{Binding EmpList}"
                   SelectedItem="{Binding SelectedEmp}"
                   SelectionMode="Single"
-                  Margin="10,34,0,0" HorizontalAlignment="Left" Width="331" SelectionChanged="employeelistView_SelectionChanged" Height="322" VerticalAlignment="Top">
+                  Margin="10,34,0,10" SelectionChanged="employeelistView_SelectionChanged" HorizontalAlignment="Left" Width="331">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="auto" 
@@ -28,18 +28,19 @@
             </ListView.View>
         </ListView>
         <Controls:EmployeeControl x:Name="employeeControl" Height="Auto" Margin="346,34,10,334" Width="Auto"/>
-        <Button x:Name="btnRemove" Content="Удалить" Margin="0,0,10,398" Height="20" VerticalAlignment="Bottom" Click="btnRemove_Click" HorizontalAlignment="Right" Width="75"/>
-        <Button x:Name="btnSave" Content="Сохранить" Margin="0,0,90,398" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="btnSave_Click"/>
-        <Button x:Name="btnAdd" Content="Добавить" Margin="0,0,170,398" Click="btnAdd_Click" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" RenderTransformOrigin="2.348,0.613"/>
+        <Button x:Name="btnRemove" Content="Удалить" Margin="0,227,10,0" Height="20" VerticalAlignment="Top" Click="btnRemove_Click" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="btnSave" Content="Сохранить" Margin="0,227,90,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="btnSave_Click"/>
+        <Button x:Name="btnAdd" Content="Добавить" Margin="0,227,170,0" Click="btnAdd_Click" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" RenderTransformOrigin="2.348,0.613"/>
         <Label x:Name="lbFIO" Content="Сотрудники:" HorizontalAlignment="Left" Margin="10,3,0,0" VerticalAlignment="Top" Height="26"/>
-        <Label x:Name="lbDept" Content="Департаменты:" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" Height="26"/>
+        <Label x:Name="lbDept" Content="Департаменты:" HorizontalAlignment="Left" Margin="346,361,0,0" VerticalAlignment="Top" Height="26" RenderTransformOrigin="-0.865,0.46"/>
         <ListView x:Name="departmentlistView"
                   ItemsSource="{Binding DepList}"
                   SelectionMode="Single"
-                  HorizontalAlignment="Left" Margin="10,392,0,10" Width="331">
+                  HorizontalAlignment="Left" Margin="346,392,0,10" Width="331">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Width="auto" 
+                                    Header="Наименование"/>
                 </GridView>
             </ListView.View>
         </ListView>
