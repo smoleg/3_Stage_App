@@ -13,6 +13,10 @@ namespace Employee.Data
         IT = 2,
         Transport = 3,
         Sales = 4,
-        RnD = 5
+        RnD = 5,
+        Production = 6,
+        Storage = 7,
+        Managment = 8,
+        Security = 9
     }
 }

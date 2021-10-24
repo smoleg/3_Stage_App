@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,12 +14,12 @@ namespace EmployeeDepartment
         private static int CHAR_BOUND_H = 90; 
 
         private Random random = new Random();
-        public List<Person> EmployeeList { get; set; }
+        public ObservableCollection<Person> EmployeeList { get; set; }
 
         public EmployeeDatabase()
         {
-            EmployeeList = new List<Person>();
-            GenerateEmployees(20);
+            EmployeeList = new ObservableCollection<Person>();
+            GenerateEmployees(25);
         }
 
         public string GenerateSymbols(int amount)
@@ -44,7 +45,7 @@ namespace EmployeeDepartment
                 firstName = GenerateSymbols(random.Next(6) + 5);
                 secondName = GenerateSymbols(random.Next(6) + 5);
                 lastName = GenerateSymbols(random.Next(6) + 5);                
-                department = (Department)random.Next(6);
+                department = (Department)random.Next(10);
                 salary = random.Next(10, 200) * 1000;
 
                 EmployeeList.Add(new Person(firstName, secondName, lastName, department, salary));
