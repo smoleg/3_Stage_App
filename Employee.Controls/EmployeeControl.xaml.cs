@@ -1,7 +1,10 @@
 ﻿using Employee.Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,48 +22,47 @@ namespace Employee.Controls
     /// <summary>
     /// Interaction logic for EmployeeControl.xaml
     /// </summary>
-    public partial class EmployeeControl : UserControl
+    public partial class EmployeeControl : UserControl, INotifyPropertyChanged
     {
+        private Person _employee;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public ObservableCollection<Department> depList { get; set; } = new ObservableCollection<Department>();
 
-        private Person employee;
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public Person Employee
+        {
+            get { return _employee; }
+            set
+            {
+                _employee = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public EmployeeControl()
         {
             InitializeComponent();
-            UpdateDeptsCB();
+            DataContext = this;
+            FilldepList();
         }
 
-        public void SetEmployee(Person person)
+        private void FilldepList()
         {
-            this.employee = person;
-
-            tbFN.Text = employee.FirstName;
-            tbLN.Text = employee.LastName;
-            tbSN.Text = employee.SecondName;
-            tbSal.Text = employee.Salary.ToString();
-            cbDept.SelectedItem = employee.Department;
-        }
-
-        public void UpdateEmployee()
-        {
-            employee.FirstName = tbFN.Text;
-            employee.LastName = tbLN.Text;
-            employee.SecondName = tbSN.Text;
-            employee.Salary = Convert.ToInt32(tbSal.Text);
-            employee.Department = (Department)cbDept.SelectedItem;
-        }
-
-        public void SetToDefault()
-        {            
-            tbFN.Text = string.Empty;
-            tbLN.Text = string.Empty;
-            tbSN.Text = string.Empty;
-            tbSal.Text = string.Empty;
-            cbDept.SelectedItem = null;
-        }
-
-        public void UpdateDeptsCB()
-        {
-            cbDept.ItemsSource = Enum.GetValues(typeof(Department)).Cast<Department>();
+            depList.Add(Department.HR);
+            depList.Add(Department.IT);
+            depList.Add(Department.RnD);
+            depList.Add(Department.None);
+            depList.Add(Department.Sales);
+            depList.Add(Department.Transport);
+            depList.Add(Department.Production);
+            depList.Add(Department.Storage);
+            depList.Add(Department.Managment);
+            depList.Add(Department.Security);
         }
     }
 }
