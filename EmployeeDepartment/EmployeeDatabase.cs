@@ -19,7 +19,7 @@ namespace EmployeeDepartment
         public EmployeeDatabase()
         {
             EmployeeList = new ObservableCollection<Person>();
-            GenerateEmployees(20);
+            GenerateEmployees(25);
         }
 
         public string GenerateSymbols(int amount)
@@ -45,7 +45,7 @@ namespace EmployeeDepartment
                 firstName = GenerateSymbols(random.Next(6) + 5);
                 secondName = GenerateSymbols(random.Next(6) + 5);
                 lastName = GenerateSymbols(random.Next(6) + 5);                
-                department = (Department)random.Next(6);
+                department = (Department)random.Next(10);
                 salary = random.Next(10, 200) * 1000;
 
                 EmployeeList.Add(new Person(firstName, secondName, lastName, department, salary));

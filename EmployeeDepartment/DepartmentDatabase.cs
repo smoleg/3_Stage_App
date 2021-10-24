@@ -11,11 +11,25 @@ namespace EmployeeDepartment
     class DepartmentDatabase
     {
         //public ObservableCollection
-        public List<Department> DepartmentList { get; set; }
+        public ObservableCollection<Department> DepartmentList { get; set; }
         public DepartmentDatabase()
         {
-            DepartmentList = new List<Department>();
-            DepartmentList.AddRange(Enum.GetValues(typeof(Department)).Cast<Department>());
+            DepartmentList = new ObservableCollection<Department>();
+            FilldepList();
+        }
+
+        private void FilldepList()
+        {
+            DepartmentList.Add(Department.HR);
+            DepartmentList.Add(Department.IT);
+            DepartmentList.Add(Department.RnD);
+            DepartmentList.Add(Department.None);
+            DepartmentList.Add(Department.Sales);
+            DepartmentList.Add(Department.Transport);
+            DepartmentList.Add(Department.Production);
+            DepartmentList.Add(Department.Storage);
+            DepartmentList.Add(Department.Managment);
+            DepartmentList.Add(Department.Security);
         }
     }
 }

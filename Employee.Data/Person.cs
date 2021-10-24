@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Employee.Data
 {
-    public class Person : INotifyPropertyChanged
-
+    public class Person : INotifyPropertyChanged, ICloneable
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private string _firstname;
         private string _lastName;
         private string _secondName;
@@ -21,6 +21,11 @@ namespace Employee.Data
         {
             if (PropertyChanged != null)
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
 
         public string FirstName
@@ -83,7 +88,5 @@ namespace Employee.Data
             Department = dep;
             Salary = Inc;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
