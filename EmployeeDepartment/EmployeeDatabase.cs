@@ -1,54 +1,51 @@
-﻿using System;
+﻿using EmpDep.Communication.EmpDepService;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Employee.Data;
+
 
 namespace EmployeeDepartment
 {
     public class EmployeeDatabase
     {
-        private static int CHAR_BOUND_L = 65; 
-        private static int CHAR_BOUND_H = 90; 
-
-        private Random random = new Random();
-        public List<Person> EmployeeList { get; set; }
+        private EmpDepServiceSoapClient EmpDepServiceSoapClient = new EmpDepServiceSoapClient();
+        public ObservableCollection<Person> EmployeeList { get; set; }
 
         public EmployeeDatabase()
         {
-            EmployeeList = new List<Person>();
-            GenerateEmployees(20);
+            EmployeeList = new ObservableCollection<Person>();
+            Load();
         }
 
-        public string GenerateSymbols(int amount)
+        private void Load()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < amount; i++)
-                stringBuilder.Append((char)(CHAR_BOUND_L + random.Next(CHAR_BOUND_H - CHAR_BOUND_L)));
-            return stringBuilder.ToString();
+            foreach (var emp in EmpDepServiceSoapClient.Load())
+                EmployeeList.Add(emp);
         }
 
-        private void GenerateEmployees(int empCount)
+        public int Add(Person employee)
         {
-            EmployeeList.Clear();
+            var res = EmpDepServiceSoapClient.Add(employee);
+            if (res > 0)
+                EmployeeList.Add(employee);
+            return res;
+        }
 
-            string firstName;
-            string lastName;
-            string secondName;
-            Department department;
-            int salary;
+        public int Update(Person employee)
+        {
+            return EmpDepServiceSoapClient.Update(employee);
+        }
 
-            for (int i = 0; i < empCount; i++)
-            {
-                firstName = GenerateSymbols(random.Next(6) + 5);
-                secondName = GenerateSymbols(random.Next(6) + 5);
-                lastName = GenerateSymbols(random.Next(6) + 5);                
-                department = (Department)random.Next(6);
-                salary = random.Next(10, 200) * 1000;
-
-                EmployeeList.Add(new Person(firstName, secondName, lastName, department, salary));
-            }
+        public int Remove(Person employee)
+        {
+            var res = EmpDepServiceSoapClient.Add(employee);
+            if (res > 0)
+                EmployeeList.Remove(employee);
+            return res;
         }
     }
 }

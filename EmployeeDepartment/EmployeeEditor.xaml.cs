@@ -1,4 +1,4 @@
-﻿using Employee.Data;
+﻿using EmpDep.Communication.EmpDepService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,7 @@ namespace EmployeeDepartment
         public EmployeeEditor()
         {
             InitializeComponent();
-            editorControl.SetEmployee(Employee);
+            editorControl.Employee = Employee;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -35,8 +35,7 @@ namespace EmployeeDepartment
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            editorControl.UpdateEmployee();
+        {            
             DialogResult = true;
         }
     }

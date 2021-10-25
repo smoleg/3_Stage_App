@@ -11,10 +11,10 @@
         <Label x:Name="lbSN" Content="Отчество:" Margin="10,72,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108"/>
         <Label x:Name="lbSal" Content="Зарплата:" Margin="10,103,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108"/>
         <Label x:Name="lbDept" Content="Департамент:" Margin="10,134,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="108"/>
-        <TextBox x:Name="tbLN" Margin="118,14,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbFN" Margin="118,45,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSN" Margin="118,76,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSal" Margin="118,107,10,0" TextWrapping="Wrap" RenderTransformOrigin="0.478,5.098" Height="23" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbDept" Margin="118,138,10,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Employee.LastName}" Margin="118,14,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Employee.FirstName}" Margin="118,45,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Employee.SecondName}" Margin="118,76,10,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Employee.Salary}" Margin="118,107,10,0" TextWrapping="Wrap" RenderTransformOrigin="0.478,5.098" Height="23" VerticalAlignment="Top"/>
+        <ComboBox ItemsSource="{Binding depList}" Text="{Binding Employee.Department}" Margin="118,138,10,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>
