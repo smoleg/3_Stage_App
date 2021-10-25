@@ -87,9 +87,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Employee.Data\Employee.Data.csproj">
-      <Project>{961420be-eecc-49cb-abc5-2c6b48e4c275}</Project>
-      <Name>Employee.Data</Name>
+    <ProjectReference Include="..\EmpDep.Communication\EmpDep.Communication.csproj">
+      <Project>{7cabe493-af5d-47f3-a53e-eef99b028a06}</Project>
+      <Name>EmpDep.Communication</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

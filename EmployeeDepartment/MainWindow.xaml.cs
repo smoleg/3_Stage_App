@@ -1,4 +1,4 @@
-﻿using Employee.Data;
+﻿using EmpDep.Communication.EmpDepService;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -62,7 +62,6 @@ namespace EmployeeDepartment
             {
                 if (employeeDatabase.Remove(SelectedEmp) > 0)
                 {
-                    employeeDatabase.EmployeeList.Remove(SelectedEmp);
                     MessageBox.Show("Запись успешно удалена", "Удаление записи", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
@@ -73,8 +72,8 @@ namespace EmployeeDepartment
             EmployeeEditor employeeEditor = new EmployeeEditor();
             if (employeeEditor.ShowDialog() == true)
             {
-                if (employeeDatabase.AddToDatabase(employeeEditor.Employee) > 0)
-                {                    
+                if (employeeDatabase.Add(employeeEditor.Employee) > 0)
+                {
                     MessageBox.Show("Запись успешно добавлена", "Добавление записи", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }

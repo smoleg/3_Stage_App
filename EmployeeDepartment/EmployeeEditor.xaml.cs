@@ -1,4 +1,4 @@
-﻿using Employee.Data;
+﻿using EmpDep.Communication.EmpDepService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
